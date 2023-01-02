@@ -1,13 +1,13 @@
-%load ED
-%ED is the expression data: raws are genes, columns are conditions/time
-%points
+ED=readtable('covid1.xlsx');
+%ED is the expression data: raws are genes, columns are samples
+ED=table2array(ED);
 R=abs(corrcoef(transpose(ED)));
 R=R-diag(diag(R));
 i=0;
 y=0;
 rk=0;
 h=0;
-% the first for loop is to determine hard-threshold and
+% the first for loop is to determine tau of hard-thresholding and
 % corresponding R2 and slope values
 for ht=0.70:0.01:0.99;
     h=h+1;
@@ -36,14 +36,14 @@ for i=1:length(rkht)
         end
     end
 end
-% writing co-expression matrix created by tau on .csv file
+% writing co-expression matrix created by tau on a .csv file
 if tau==0
         display('no tau satisfying scale-freeness could be detected')
 else
     HT=logical(R>=tau)*1;
     save HT HT
     csvwrite('COVID1CSV-tau.csv', HT);
-    % -----------------------------------------------------------------------
+  
     % the second part is to determine soft-thresholding parameters for ASF
     % and corresponding R2 and slope values
     x=0;
@@ -78,7 +78,7 @@ else
             end
         end
     end
-    % writing co-expression matrix created by ASF on .csv file
+    % writing co-expression matrix created by ASF on a .csv file
     if A==0
         A=50;
         ET=(1+exp(-A*(R-m)));
