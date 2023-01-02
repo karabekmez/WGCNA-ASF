@@ -32,7 +32,7 @@ plotDendroAndColors(geneTree, dynamicColors, "Dynamic Tree Cut",
 dev.off()
 
 # after initial modulation of WGCNA, re-allocation of genes by using raw expression data is needed
-	human <- read.table("human.txt") # human.txt consists of expression data
+	human <- read_excel("covid1.xlsx", col_names = FLASE) # human.txt consists of expression data
 	covidmatrix <- as.matrix(human)
 	datExpr <- t(covidmatrix)	
 
