@@ -1,5 +1,3 @@
-Since the WGCNA R-package is based only on the R2 value, matrix files  can be created in MATLAB to prepare the datasets for the hard-thresholding and ASF transformation.
-INPUT: Expression Data
-Calculates lowest hard-thresholding value (tau) satisfying scale-free criteria
-Calculates lowest alpha value for transformation of correlation matrix by asymmetric sigmoid function (ASF) satidfying scale-free criteria (setting mu=tau)
-OUTPUT: ".csv" files containing transformed similarity matrix by hard-thresholding and by ASF.Then, with using these matrix files as an input file, WGCNA tutorial can be applied by using ASF. 
+WGCNA_ASF.m file is where the weights of co-expression network is transformed from correlation coefficients by hard thresholding and Asymmetric Sigmoid Function.
+The outputs of WGCNA_ASF.m should be used in WGCNA R-package.
+WGCNA_ASF_Modules.R file consists of the codes from original WGCNA R-package (Langfelder P and Horvath S). It guides to show at which step of WGCNA pipeline should the new input provided.
